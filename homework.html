@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&display=swap" rel="stylesheet">
+
+    <title>디자이너 로고상점</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <style>
+        .wrap {
+            margin: 60px auto;
+            width: 500px;
+        }
+
+        .specialFont {
+            font-family: 'Black And White Picture', sans-serif;
+            font-size: 30px;
+
+        }
+
+        .priceFont {
+            color: blue;
+            font-family: 'Black And White Picture', sans-serif;
+            font-family: 'Black Han Sans', sans-serif;
+        }
+    </style>
+
+
+</head>
+
+
+<body>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <script>
+
+        function buy() {
+
+            if ($("#inputbox1").val().length == 0) { alert("의뢰자 이름을 입력하세요."); $("#inputbox1").focus(); return false; }
+            if ($("#inputbox2").val() == 0) { alert("용도를 고르세요."); $("#inputbox2").focus(); return false; }
+            if ($("#inputbox3").val().length == 0) { alert("이메일 주소를 입력하세요."); $("#inputbox3").focus(); return false; }
+            if ($("#inputbox4").val().length == 0) { alert("전화번호를 입력하세요."); $("#inputbox4").focus(); return false; }
+            else { alert("주문이 완료되었습니다 :)") }
+        }
+
+
+        function priceCheck() {
+            $.ajax({
+                type: "GET",
+                url: "https://api.manana.kr/exchange/rate.json",
+                data: {},
+                success: function (response) {
+                    let exchange = response["rate"];
+                    $("#zone").append(exchange);
+                }
+            })
+        }
+
+
+    </script>
+
+
+    <div class="wrap">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top"
+                src="https://image.freepik.com/free-vector/spartan-warrior-esports-gaming-logo_13606-53.jpg"
+                alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title specialFont">스파르타 로고판매</h5>
+                <button onclick="priceCheck()">실시간 경매가 확인</button>
+                <ul id="zone"></ul>
+
+
+                <p></p>
+                <p class="card-text">Freepik 출신 캐릭터 디자이너의 &nbsp; 한정판 로고를 판매합니다.</p>
+
+
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">의뢰자 이름</span>
+                    </div>
+                    <input id="inputbox1" type="text" class="form-control" placeholder="" aria-label=""
+                        aria-describedby="basic-addon1">
+                </div>
+
+
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">용도</label>
+                    </div>
+                    <select class="custom-select" id="inputbox2">
+                        <option value="0">용도 선택</option>
+                        <option value="1">비상업용</option>
+                        <option value="2">상업용</option>
+                        <option value="3">기업활용</option>
+                    </select>
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">이메일주소</span>
+                    </div>
+                    <input id="inputbox3" type="text" class="form-control" placeholder="" aria-label=""
+                        aria-describedby="basic-addon1">
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">전화번호</span>
+                    </div>
+                    <input id="inputbox4" type="text" class="form-control" placeholder="" aria-label=""
+                        aria-describedby="basic-addon1">
+                </div>
+
+
+                <p>
+                </p>
+
+                <a href="#" id="buybutton" class="btn btn-primary" onclick="buy()">주문하기</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+
+
+</html>
