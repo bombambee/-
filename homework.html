@@ -69,8 +69,8 @@
                 url: "https://api.manana.kr/exchange/rate.json",
                 data: {},
                 success: function (response) {
-                    let exchange = response["rate"];
-                    $("#zone").append(exchange);
+                    let exchange = response[1]["rate"];
+                    $("#zone").text(exchange);
                 }
             })
         }
@@ -86,8 +86,8 @@
                 alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title specialFont">스파르타 로고판매</h5>
-                <button onclick="priceCheck()">실시간 경매가 확인1</button>
-                <ul id="zone"></ul>
+                <button id="zone" onclick="priceCheck()">실시간 경매가 확인</button>
+                
 
 
                 <p></p>
